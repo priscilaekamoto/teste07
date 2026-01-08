@@ -1,0 +1,31 @@
+@api_HostAddress = http://localhost:5289
+
+### Listar pessoas
+GET {{api_HostAddress}}/api/pessoas
+Accept: application/json
+
+###
+
+### Obter pessoa por id
+GET {{api_HostAddress}}/api/pessoas/1
+Accept: application/json
+
+###
+
+### Criar pessoa
+POST {{api_HostAddress}}/api/pessoas
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nome": "João Silva",
+  "idade": 30
+}
+
+###
+
+### Deletar pessoa
+DELETE {{api_HostAddress}}/api/pessoas/1
+Accept: application/json
+
+###

@@ -1,7 +1,20 @@
-using Microsoft.EntityFrameworkCore;
+using api.Application.Pessoas.Commands;
+using api.Application.Pessoas.Dtos;
+using api.Application.Pessoas.Handlers;
+using api.Application.Pessoas.Queries;
 using api.Data;
+using Microsoft.EntityFrameworkCore;
+using api.Application.Mediator.Dispatcher;
+using api.Application.Mediator.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<IDispatcher, Dispatcher>();
+
+// register handlers (use os tipos de Interfaces corretos)
+builder.Services.AddScoped<IQueryHandler<GetAllPessoasQuery, List<PessoaDto>>, GetAllPessoasHandler>();
+builder.Services.AddScoped<IQueryHandler<GetPessoaByIdQuery, PessoaDto?>, GetPessoaByIdHandler>();
+builder.Services.AddScoped<ICommandHandler<CreatePessoaCommand, PessoaDto>, CreatePessoaHandler>();
+builder.Services.AddScoped<ICommandHandler<DeletePessoaCommand, bool>, DeletePessoaHandler>();
 
 // Add services to the container.
 builder.Services.AddControllers();
