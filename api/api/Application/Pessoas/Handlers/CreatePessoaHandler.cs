@@ -1,10 +1,8 @@
-using System.Threading;
-using System.Threading.Tasks;
+using api.Application.Mediator.Interfaces;
 using api.Application.Pessoas.Commands;
 using api.Application.Pessoas.Dtos;
 using api.Data;
 using api.Models;
-using api.Application.Mediator.Interfaces;
 
 namespace api.Application.Pessoas.Handlers
 {
