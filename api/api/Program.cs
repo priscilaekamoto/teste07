@@ -10,6 +10,9 @@ using api.Application.Mediator.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IDispatcher, Dispatcher>();
 
+// register unit of work
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 // register handlers (use os tipos de Interfaces corretos)
 builder.Services.AddScoped<IQueryHandler<GetAllPessoasQuery, List<PessoaDto>>, GetAllPessoasHandler>();
 builder.Services.AddScoped<IQueryHandler<GetPessoaByIdQuery, PessoaDto?>, GetPessoaByIdHandler>();

@@ -1,3 +1,5 @@
+using System.Threading;
+using System.Threading.Tasks;
 using api.Application.Pessoas.Commands;
 using api.Application.Pessoas.Dtos;
 using api.Data;
@@ -9,20 +11,37 @@ namespace api.Application.Pessoas.Handlers
     public class CreatePessoaHandler : ICommandHandler<CreatePessoaCommand, PessoaDto>
     {
         private readonly AppDbContext _db;
-        public CreatePessoaHandler(AppDbContext db) => _db = db;
+        private readonly IUnitOfWork _uow;
+
+        public CreatePessoaHandler(AppDbContext db, IUnitOfWork uow)
+        {
+            _db = db;
+            _uow = uow;
+        }
 
         public async Task<PessoaDto> HandleAsync(CreatePessoaCommand command, CancellationToken cancellationToken)
         {
-            var pessoa = new Pessoa
+            await _uow.BeginTransactionAsync(cancellationToken);
+
+            try
             {
-                Nome = command.Nome,
-                Idade = command.Idade
-            };
+                var pessoa = new Pessoa
+                {
+                    Nome = command.Nome,
+                    Idade = command.Idade
+                };
 
-            _db.Pessoas.Add(pessoa);
-            await _db.SaveChangesAsync();
+                _db.Pessoas.Add(pessoa);
+                await _uow.SaveChangesAsync(cancellationToken);
+                await _uow.CommitAsync(cancellationToken);
 
-            return new PessoaDto { Id = pessoa.Id, Nome = pessoa.Nome, Idade = pessoa.Idade };
+                return new PessoaDto { Id = pessoa.Id, Nome = pessoa.Nome, Idade = pessoa.Idade };
+            }
+            catch
+            {
+                await _uow.RollbackAsync(cancellationToken);
+                throw;
+            }
         }
     }
 }
