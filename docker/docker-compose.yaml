@@ -12,6 +12,7 @@ services:
       - "3308:3306"
     volumes:
       - mysql-teste07:/var/lib/mysql
+      - ./dbkeycloak/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p123"]
       interval: 10s
@@ -30,6 +31,32 @@ services:
       PMA_PASSWORD: 123
     ports:
       - "8087:80"
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0
+    container_name: keycloak-teste07
+    command:
+      - start-dev
+    environment:
+      KC_DB: mysql
+      KC_DB_URL: jdbc:mysql://mysql:3306/teste07_keycloak
+      KC_DB_USERNAME: teste07
+      KC_DB_PASSWORD: 123
+
+      # Credenciais do admin
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+
+      # Ajuste recomendável para dev
+      KC_HOSTNAME_URL: http://localhost:8084
+      KC_HOSTNAME_STRICT: "false"
+      KC_PROXY: edge
+    ports:
+      - "8084:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: always
 
 volumes:
   mysql-teste07:
