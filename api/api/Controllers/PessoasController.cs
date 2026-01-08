@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using api.Data;
-using api.Models;
+using api.Application.Mediator.Dispatcher;
+using api.Application.Pessoas.Dtos;
+using api.Application.Pessoas.Queries;
+using api.Application.Pessoas.Commands;
 
 namespace api.Controllers
 {
@@ -9,69 +10,47 @@ namespace api.Controllers
     [Route("api/[controller]")]
     public class PessoasController : ControllerBase
     {
-        private readonly AppDbContext _db;
+        private readonly IDispatcher _dispatcher;
 
-        public PessoasController(AppDbContext db)
+        public PessoasController(IDispatcher dispatcher)
         {
-            _db = db;
+            _dispatcher = dispatcher;
         }
 
         // GET: api/pessoas
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var pessoas = await _db.Pessoas
-                                   .AsNoTracking()
-                                   .ToListAsync();
-            return Ok(pessoas);
+            var result = await _dispatcher.QueryAsync<List<PessoaDto>>(new GetAllPessoasQuery(), HttpContext.RequestAborted);
+            return Ok(result);
         }
 
         // POST: api/pessoas
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Pessoa input)
+        public async Task<IActionResult> Create([FromBody] CreatePessoaCommand input)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || input is null)
                 return BadRequest(ModelState);
 
-            var pessoa = new Pessoa
-            {
-                Nome = input.Nome,
-                Idade = input.Idade
-            };
-
-            _db.Pessoas.Add(pessoa);
-            await _db.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetById), new { id = pessoa.Id }, pessoa);
+            var created = await _dispatcher.SendAsync<PessoaDto>(input, HttpContext.RequestAborted);
+            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 
         // GET: api/pessoas/{id}
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var pessoa = await _db.Pessoas
-                                 .AsNoTracking()
-                                 .FirstOrDefaultAsync(p => p.Id == id);
-
-            if (pessoa == null)
-                return NotFound();
-
-            return Ok(pessoa);
+            var result = await _dispatcher.QueryAsync<PessoaDto?>(new GetPessoaByIdQuery(id), HttpContext.RequestAborted);
+            if (result == null) return NotFound();
+            return Ok(result);
         }
 
         // DELETE: api/pessoas/{id}
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var pessoa = await _db.Pessoas.FirstOrDefaultAsync(p => p.Id == id);
-
-            if (pessoa == null)
-                return NotFound();
-
-            _db.Pessoas.Remove(pessoa);
-            await _db.SaveChangesAsync();
-
-            // Como OnDelete cascade está configurado, as transações serão removidas automaticamente.
+            var ok = await _dispatcher.SendAsync<bool>(new DeletePessoaCommand(id), HttpContext.RequestAborted);
+            if (!ok) return NotFound();
             return NoContent();
         }
     }
