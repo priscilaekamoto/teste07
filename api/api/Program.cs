@@ -6,6 +6,9 @@ using api.Data;
 using Microsoft.EntityFrameworkCore;
 using api.Application.Mediator.Dispatcher;
 using api.Application.Mediator.Interfaces;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using api.Application.Pessoas.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IDispatcher, Dispatcher>();
@@ -21,6 +24,10 @@ builder.Services.AddScoped<ICommandHandler<DeletePessoaCommand, bool>, DeletePes
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+// FluentValidation: ativa validação automática e registra validators do assembly
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<CreatePessoaCommandValidator>();
 
 // EF Core - DbContext (MySQL)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
