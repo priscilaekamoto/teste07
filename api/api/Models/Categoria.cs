@@ -7,6 +7,7 @@ namespace api.Models
         public int Id { get; set; }
         public string Descricao { get; set; } = null!;
         public Finalidade Finalidade { get; set; }
+        public ICollection<Transacao> Transacoes { get; set; } = new List<Transacao>();
 
     }
 }
