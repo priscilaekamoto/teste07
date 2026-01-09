@@ -12,7 +12,7 @@ namespace api.Controllers
     {
         private readonly IDispatcher _dispatcher;
 
-        public PessoasController(IDispatcher dispatcher)
+        public PessoasController(IDispatcher dispatcher) 
         {
             _dispatcher = dispatcher;
         }
@@ -27,12 +27,12 @@ namespace api.Controllers
 
         // POST: api/pessoas
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreatePessoaCommand input)
+        public async Task<IActionResult> Create([FromBody] CreatePessoaCommand createPessoaCommand)
         {
-            if (!ModelState.IsValid || input is null)
-                return BadRequest(ModelState);
+            if (createPessoaCommand is null)
+                return BadRequest();
 
-            var created = await _dispatcher.SendAsync<PessoaDto>(input, HttpContext.RequestAborted);
+            var created = await _dispatcher.SendAsync<PessoaDto>(createPessoaCommand, HttpContext.RequestAborted);
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 
