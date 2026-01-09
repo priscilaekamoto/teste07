@@ -8,7 +8,9 @@ namespace api.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Pessoa> Pessoas { get; set; } = null!;
-        
+
+        public DbSet<Categoria> Categorias { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pessoa>(entity =>
