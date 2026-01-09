@@ -9,6 +9,10 @@ using api.Application.Mediator.Interfaces;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using api.Application.Pessoas.Validators;
+using api.Application.Categorias.Commands;
+using api.Application.Categorias.Dtos;
+using api.Application.Categorias.Handlers;
+using api.Application.Categorias.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IDispatcher, Dispatcher>();
@@ -21,6 +25,9 @@ builder.Services.AddScoped<IQueryHandler<GetAllPessoasQuery, List<PessoaDto>>, G
 builder.Services.AddScoped<IQueryHandler<GetPessoaByIdQuery, PessoaDto?>, GetPessoaByIdHandler>();
 builder.Services.AddScoped<ICommandHandler<CreatePessoaCommand, PessoaDto>, CreatePessoaHandler>();
 builder.Services.AddScoped<ICommandHandler<DeletePessoaCommand, bool>, DeletePessoaHandler>();
+builder.Services.AddScoped<ICommandHandler<CreateCategoriaCommand, CategoriaDto>, CreateCategoriaHandler>();
+builder.Services.AddScoped<IQueryHandler<GetAllCategoriasQuery, List<CategoriaDto>>, GetAllCategoriasHandler>();
+builder.Services.AddScoped<IQueryHandler<GetCategoriaByIdQuery, CategoriaDto?>, GetCategoriaByIdHandler>();
 
 // Add services to the container.
 builder.Services.AddControllers();
