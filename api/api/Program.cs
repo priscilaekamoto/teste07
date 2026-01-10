@@ -13,6 +13,10 @@ using api.Application.Categorias.Commands;
 using api.Application.Categorias.Dtos;
 using api.Application.Categorias.Handlers;
 using api.Application.Categorias.Queries;
+using api.Application.Transacoes.Commands;
+using api.Application.Transacoes.Dtos;
+using api.Application.Transacoes.Handlers;
+using api.Application.Transacoes.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IDispatcher, Dispatcher>();
@@ -28,6 +32,9 @@ builder.Services.AddScoped<ICommandHandler<DeletePessoaCommand, bool>, DeletePes
 builder.Services.AddScoped<ICommandHandler<CreateCategoriaCommand, CategoriaDto>, CreateCategoriaHandler>();
 builder.Services.AddScoped<IQueryHandler<GetAllCategoriasQuery, List<CategoriaDto>>, GetAllCategoriasHandler>();
 builder.Services.AddScoped<IQueryHandler<GetCategoriaByIdQuery, CategoriaDto?>, GetCategoriaByIdHandler>();
+builder.Services.AddScoped<ICommandHandler<CreateTransacaoCommand, TransacaoDto>, CreateTransacaoHandler>();
+builder.Services.AddScoped<IQueryHandler<GetAllTransacoesQuery, List<TransacaoDto>>, GetAllTransacoesHandler>();
+builder.Services.AddScoped<IQueryHandler<GetTransacaoByIdQuery, TransacaoDto?>, GetTransacaoByIdHandler>();
 
 // Add services to the container.
 builder.Services.AddControllers();
