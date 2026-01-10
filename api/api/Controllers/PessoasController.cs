@@ -27,7 +27,7 @@ namespace api.Controllers
 
         // GET: api/pessoas/totalReceitasDespesasSaldo
         [HttpGet("TotalReceitasDespesasSaldo")]
-        public async Task<IActionResult> GetByName()
+        public async Task<IActionResult> GetByTotal()
         {
             var result = await _dispatcher.QueryAsync<List<PessoaTotalReceitaDespesasSaldoDto>>(new GetAllTotalReceitasDespesasSaldoPessoasQuery(), HttpContext.RequestAborted);
             return Ok(result);
