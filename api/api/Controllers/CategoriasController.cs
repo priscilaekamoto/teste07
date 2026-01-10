@@ -36,6 +36,14 @@ namespace api.Controllers
             return Ok(result);
         }
 
+        // GET: api/categorias/totalReceitasDespesasSaldo
+        [HttpGet("TotalReceitasDespesasSaldo")]
+        public async Task<IActionResult> GetTotalReceitasDespesasSaldo()
+        {
+            var result = await _dispatcher.QueryAsync<List<CategoriaTotalReceitasDespesasSaldoDto>>(new GetAllTotalReceitasdespesasSaldoCategoriaQuery(), HttpContext.RequestAborted);
+            return Ok(result);
+        }
+
         // GET: api/categorias/{id}
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
