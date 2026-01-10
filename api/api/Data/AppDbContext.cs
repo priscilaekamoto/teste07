@@ -37,10 +37,11 @@ namespace api.Data
                       .OnDelete(DeleteBehavior.Restrict);
 
                 // FK Pessoa
+                // Em casos que se delete uma pessoa, todas a transações dessa pessoa deverão ser apagadas.
                 entity.HasOne(t => t.Pessoa)
                       .WithMany(p => p.Transacoes)
                       .HasForeignKey(t => t.PessoaId)
-                      .OnDelete(DeleteBehavior.Restrict);
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
             base.OnModelCreating(modelBuilder);
