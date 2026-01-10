@@ -1,8 +1,8 @@
-using api.Application.Pessoas.Dtos;
 using api.Application.Pessoas.Queries;
 using api.Data;
 using Microsoft.EntityFrameworkCore;
 using api.Application.Mediator.Interfaces;
+using api.Application.Dtos;
 
 namespace api.Application.Pessoas.Handlers
 {

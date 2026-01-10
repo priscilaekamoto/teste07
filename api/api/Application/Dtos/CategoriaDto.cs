@@ -1,6 +1,6 @@
 ﻿using api.Models.Enums;
 
-namespace api.Application.Categorias.Dtos
+namespace api.Application.Dtos
 {
     public class CategoriaDto
     {

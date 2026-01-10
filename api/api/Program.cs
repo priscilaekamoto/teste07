@@ -1,5 +1,4 @@
 using api.Application.Pessoas.Commands;
-using api.Application.Pessoas.Dtos;
 using api.Application.Pessoas.Handlers;
 using api.Application.Pessoas.Queries;
 using api.Data;
@@ -10,13 +9,12 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using api.Application.Pessoas.Validators;
 using api.Application.Categorias.Commands;
-using api.Application.Categorias.Dtos;
 using api.Application.Categorias.Handlers;
 using api.Application.Categorias.Queries;
 using api.Application.Transacoes.Commands;
-using api.Application.Transacoes.Dtos;
 using api.Application.Transacoes.Handlers;
 using api.Application.Transacoes.Queries;
+using api.Application.Dtos;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IDispatcher, Dispatcher>();

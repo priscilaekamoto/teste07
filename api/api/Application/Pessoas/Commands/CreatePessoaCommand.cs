@@ -1,5 +1,5 @@
+using api.Application.Dtos;
 using api.Application.Mediator.Interfaces;
-using api.Application.Pessoas.Dtos;
 
 namespace api.Application.Pessoas.Commands
 {
