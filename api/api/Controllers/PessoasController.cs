@@ -25,6 +25,14 @@ namespace api.Controllers
             return Ok(result);
         }
 
+        // GET: api/pessoas/nome
+        [HttpGet("nome")]
+        public async Task<IActionResult> GetByName()
+        {
+            var result = await _dispatcher.QueryAsync<List<PessoaNomeDto>>(new GetAllPessoasNomeQuery(), HttpContext.RequestAborted);
+            return Ok(result);
+        }
+
         // POST: api/pessoas
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatePessoaCommand createPessoaCommand)
