@@ -3,7 +3,7 @@ using api.Shared.Dtos;
 
 namespace api.Models
 {
-    public class Transacao: ResultDto
+    public class Transacao
     {
         public int Id { get; set; }
         public string Descricao { get; set; } = null!;
@@ -14,16 +14,26 @@ namespace api.Models
         public int PessoaId { get; set; }
         public Pessoa Pessoa { get; set; } = null!;
 
-        // Caso o usuário informe um menor de idade (menor de 18), apenas despesas deverão ser aceitas.
-        public bool Menorde18anosEReceita(Pessoa pessoa)
+        public ResultDto Valid(Pessoa pessoa, Categoria categoria) 
         {
+            List<string> messages = new List<string>();
+            var code = StatusCodes.Status200OK;
+
+            // Caso o usuário informe um menor de idade (menor de 18), apenas despesas deverão ser aceitas.
             if (pessoa.Idade < 18 && Tipo == TipoTransacao.Receita)
             {
-                this.Message = "Pessoas menores de 18 anos não podem registrar transações do tipo Receita.";
-                this.Code = StatusCodes.Status400BadRequest;
-                return true;
+                messages.Add("Pessoas menores de 18 anos não podem registrar transações do tipo Receita.");
+                code = StatusCodes.Status400BadRequest;
             }
-            return false;
+
+            // A finalidade da categoria deve corresponder ao tipo da transação.
+            if ((int)categoria.Finalidade != (int)Tipo)
+            {
+                messages.Add("Finalidade da Categoria diferente do Tipo passado.");
+                code = StatusCodes.Status400BadRequest;
+            }
+
+            return new ResultDto { Messages = messages, Code = code };
         }
     }
 }
