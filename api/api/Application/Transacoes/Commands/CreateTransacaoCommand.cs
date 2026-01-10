@@ -1,5 +1,5 @@
-﻿using api.Application.Mediator.Interfaces;
-using api.Application.Transacoes.Dtos;
+﻿using api.Application.Dtos;
+using api.Application.Mediator.Interfaces;
 using api.Models.Enums;
 
 namespace api.Application.Transacoes.Commands

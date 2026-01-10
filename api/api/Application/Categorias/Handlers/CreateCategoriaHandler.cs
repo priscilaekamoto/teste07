@@ -1,5 +1,5 @@
 ﻿using api.Application.Categorias.Commands;
-using api.Application.Categorias.Dtos;
+using api.Application.Dtos;
 using api.Application.Mediator.Interfaces;
 using api.Data;
 using api.Models;

@@ -1,6 +1,6 @@
-﻿using api.Application.Mediator.Interfaces;
+﻿using api.Application.Dtos;
+using api.Application.Mediator.Interfaces;
 using api.Application.Transacoes.Commands;
-using api.Application.Transacoes.Dtos;
 using api.Data;
 using api.Models;
 
@@ -30,8 +30,26 @@ namespace api.Application.Transacoes.Handlers
                     Tipo = command.Tipo,
                     CategoriaId = command.CategoriaId,
                     PessoaId = command.PessoaId
-
                 };
+
+                var pessoa = _db.Pessoas.Find(command.PessoaId);
+
+                if (pessoa == null)
+                    return new TransacaoDto() { Code = StatusCodes.Status400BadRequest, Message="Pessoal não encontrada!" };
+
+                if (pessoa != null && transacao.Menorde18anosEReceita(pessoa))
+                {
+                    return new TransacaoDto
+                    {
+                        CategoriaId = command.CategoriaId,
+                        Descricao = command.Descricao,
+                        PessoaId = command.PessoaId,
+                        Tipo = command.Tipo,
+                        Valor = command.Valor,
+                        Message = transacao.Message,
+                        Code = transacao.Code
+                    };
+                }
 
                 _db.Transacoes.Add(transacao);
                 await _uow.SaveChangesAsync(cancellationToken);

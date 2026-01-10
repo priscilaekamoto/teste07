@@ -1,8 +1,8 @@
 ﻿using api.Models.Enums;
 
-namespace api.Application.Transacoes.Dtos
+namespace api.Application.Dtos
 {
-    public class TransacaoDto
+    public class TransacaoDto:ResultDto
     {
         public int Id { get; set; }
         public string Descricao { get; set; } = null!;

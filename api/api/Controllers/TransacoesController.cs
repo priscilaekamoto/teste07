@@ -1,6 +1,6 @@
-﻿using api.Application.Mediator.Dispatcher;
+﻿using api.Application.Dtos;
+using api.Application.Mediator.Dispatcher;
 using api.Application.Transacoes.Commands;
-using api.Application.Transacoes.Dtos;
 using api.Application.Transacoes.Queries;
 using Microsoft.AspNetCore.Mvc;
 

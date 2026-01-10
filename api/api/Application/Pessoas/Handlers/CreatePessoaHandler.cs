@@ -1,6 +1,6 @@
+using api.Application.Dtos;
 using api.Application.Mediator.Interfaces;
 using api.Application.Pessoas.Commands;
-using api.Application.Pessoas.Dtos;
 using api.Data;
 using api.Models;
 

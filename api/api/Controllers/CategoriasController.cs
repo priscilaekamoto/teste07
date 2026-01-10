@@ -1,6 +1,6 @@
 ﻿using api.Application.Categorias.Commands;
-using api.Application.Categorias.Dtos;
 using api.Application.Categorias.Queries;
+using api.Application.Dtos;
 using api.Application.Mediator.Dispatcher;
 using Microsoft.AspNetCore.Mvc;
 
