@@ -2,7 +2,7 @@
 
 namespace api.Shared.Dtos
 {
-    public class TransacaoDto:ResultDto
+    public class TransacaoDto: ResultDto
     {
         public int Id { get; set; }
         public string Descricao { get; set; } = null!;

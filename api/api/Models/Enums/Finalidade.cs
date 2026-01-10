@@ -2,8 +2,8 @@
 {
     public enum Finalidade
     {
-        Despesa = 1,
-        Receita = 2,
+        Despesa = 2,
+        Receita = 1,
         Ambas = 3,
     }
 }

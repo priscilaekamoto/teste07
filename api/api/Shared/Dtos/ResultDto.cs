@@ -3,6 +3,11 @@
     public class ResultDto
     {
         public int Code { get; set; }
-        public string Message { get; set; }
+        public List<string> Messages { get; set; }
+
+        public ResultDto()
+        {
+            Messages = new List<string>();
+        }
     }
 }

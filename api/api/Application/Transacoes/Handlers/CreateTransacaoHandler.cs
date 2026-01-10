@@ -33,11 +33,17 @@ namespace api.Application.Transacoes.Handlers
                 };
 
                 var pessoa = _db.Pessoas.Find(command.PessoaId);
+                var categoria = _db.Categorias.Find(command.CategoriaId);
 
                 if (pessoa == null)
-                    return new TransacaoDto() { Code = StatusCodes.Status400BadRequest, Message="Pessoal não encontrada!" };
+                    return new TransacaoDto() { Code = StatusCodes.Status400BadRequest, Messages = new List<string> { "Pessoal não encontrada!" } };
 
-                if (pessoa != null && transacao.Menorde18anosEReceita(pessoa))
+                if (categoria == null)
+                    return new TransacaoDto() { Code = StatusCodes.Status400BadRequest, Messages = new List<string> { "Categoria não encontrada!" } };
+
+                var ret = transacao.Valid(pessoa, categoria);
+
+                if (pessoa != null && ret.Code != StatusCodes.Status200OK)
                 {
                     return new TransacaoDto
                     {
@@ -46,8 +52,8 @@ namespace api.Application.Transacoes.Handlers
                         PessoaId = command.PessoaId,
                         Tipo = command.Tipo,
                         Valor = command.Valor,
-                        Message = transacao.Message,
-                        Code = transacao.Code
+                        Messages = ret.Messages,
+                        Code = ret.Code
                     };
                 }
 
