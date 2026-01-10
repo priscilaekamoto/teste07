@@ -1,7 +1,7 @@
-﻿using api.Application.Dtos;
-using api.Application.Mediator.Dispatcher;
-using api.Application.Transacoes.Commands;
+﻿using api.Application.Transacoes.Commands;
 using api.Application.Transacoes.Queries;
+using api.Shared.Dtos;
+using api.Shared.Mediator.Dispatcher;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers

@@ -1,6 +1,6 @@
-using api.Application.Mediator.Interfaces;
 using api.Application.Pessoas.Commands;
 using api.Data;
+using api.Shared.Mediator.Interfaces;
 
 namespace api.Application.Pessoas.Handlers
 {

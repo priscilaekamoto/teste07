@@ -1,7 +1,7 @@
 ﻿using api.Application.Categorias.Commands;
 using api.Application.Categorias.Queries;
-using api.Application.Dtos;
-using api.Application.Mediator.Dispatcher;
+using api.Shared.Dtos;
+using api.Shared.Mediator.Dispatcher;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers

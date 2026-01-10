@@ -1,6 +1,6 @@
-﻿using api.Application.Dtos;
-using api.Application.Mediator.Interfaces;
-using api.Models.Enums;
+﻿using api.Models.Enums;
+using api.Shared.Dtos;
+using api.Shared.Mediator.Interfaces;
 
 namespace api.Application.Categorias.Commands
 {

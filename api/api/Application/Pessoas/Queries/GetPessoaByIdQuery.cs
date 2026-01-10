@@ -1,5 +1,5 @@
-using api.Application.Mediator.Interfaces;
-using api.Application.Dtos;
+using api.Shared.Dtos;
+using api.Shared.Mediator.Interfaces;
 
 namespace api.Application.Pessoas.Queries
 {

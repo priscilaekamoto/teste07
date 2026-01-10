@@ -1,7 +1,7 @@
-﻿using api.Application.Dtos;
-using api.Application.Mediator.Interfaces;
-using api.Application.Transacoes.Queries;
+﻿using api.Application.Transacoes.Queries;
 using api.Data;
+using api.Shared.Dtos;
+using api.Shared.Mediator.Interfaces;
 
 namespace api.Application.Transacoes.Handlers
 {

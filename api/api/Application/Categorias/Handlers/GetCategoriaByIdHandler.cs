@@ -1,7 +1,7 @@
 ﻿using api.Application.Categorias.Queries;
-using api.Application.Dtos;
-using api.Application.Mediator.Interfaces;
 using api.Data;
+using api.Shared.Dtos;
+using api.Shared.Mediator.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Application.Categorias.Handlers
