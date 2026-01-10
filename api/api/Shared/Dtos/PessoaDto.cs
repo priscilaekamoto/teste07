@@ -1,4 +1,4 @@
-namespace api.Application.Dtos
+namespace api.Shared.Dtos
 {
     public class PessoaDto
     {

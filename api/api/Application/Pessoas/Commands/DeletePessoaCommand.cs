@@ -1,4 +1,4 @@
-using api.Application.Mediator.Interfaces;
+using api.Shared.Mediator.Interfaces;
 
 namespace api.Application.Pessoas.Commands
 {

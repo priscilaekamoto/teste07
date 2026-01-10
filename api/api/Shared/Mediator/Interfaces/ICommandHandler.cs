@@ -1,4 +1,4 @@
-﻿namespace api.Application.Mediator.Interfaces;
+﻿namespace api.Shared.Mediator.Interfaces;
 
 public interface ICommandHandler<TCommand>
 

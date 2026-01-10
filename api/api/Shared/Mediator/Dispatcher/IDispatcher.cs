@@ -1,6 +1,6 @@
-﻿using api.Application.Mediator.Interfaces;
+﻿using api.Shared.Mediator.Interfaces;
 
-namespace api.Application.Mediator.Dispatcher
+namespace api.Shared.Mediator.Dispatcher
 {
     public interface IDispatcher
     {

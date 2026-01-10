@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using api.Application.Mediator.Dispatcher;
 using api.Application.Pessoas.Queries;
 using api.Application.Pessoas.Commands;
-using api.Application.Dtos;
+using api.Shared.Dtos;
+using api.Shared.Mediator.Dispatcher;
 
 namespace api.Controllers
 {

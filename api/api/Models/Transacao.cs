@@ -1,5 +1,5 @@
-﻿using api.Application.Dtos;
-using api.Models.Enums;
+﻿using api.Models.Enums;
+using api.Shared.Dtos;
 
 namespace api.Models
 {

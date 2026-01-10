@@ -1,5 +1,5 @@
-﻿using api.Application.Dtos;
-using api.Application.Mediator.Interfaces;
+﻿using api.Shared.Dtos;
+using api.Shared.Mediator.Interfaces;
 
 namespace api.Application.Categorias.Queries
 {

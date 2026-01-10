@@ -1,6 +1,6 @@
 ﻿using api.Models.Enums;
 
-namespace api.Application.Dtos
+namespace api.Shared.Dtos
 {
     public class TransacaoDto:ResultDto
     {

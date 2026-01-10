@@ -1,8 +1,8 @@
-using api.Application.Dtos;
-using api.Application.Mediator.Interfaces;
 using api.Application.Pessoas.Commands;
 using api.Data;
 using api.Models;
+using api.Shared.Dtos;
+using api.Shared.Mediator.Interfaces;
 
 namespace api.Application.Pessoas.Handlers
 {
