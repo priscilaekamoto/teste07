@@ -25,11 +25,11 @@ namespace api.Controllers
             return Ok(result);
         }
 
-        // GET: api/pessoas/nome
-        [HttpGet("nome")]
+        // GET: api/pessoas/totalReceitasDespesasSaldo
+        [HttpGet("TotalReceitasDespesasSaldo")]
         public async Task<IActionResult> GetByName()
         {
-            var result = await _dispatcher.QueryAsync<List<PessoaNomeDto>>(new GetAllPessoasNomeQuery(), HttpContext.RequestAborted);
+            var result = await _dispatcher.QueryAsync<List<PessoaTotalReceitaDespesasSaldoDto>>(new GetAllTotalReceitasDespesasSaldoPessoasQuery(), HttpContext.RequestAborted);
             return Ok(result);
         }
 

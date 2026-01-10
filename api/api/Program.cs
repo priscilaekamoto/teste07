@@ -33,7 +33,7 @@ builder.Services.AddScoped<IQueryHandler<GetCategoriaByIdQuery, CategoriaDto?>, 
 builder.Services.AddScoped<ICommandHandler<CreateTransacaoCommand, TransacaoDto>, CreateTransacaoHandler>();
 builder.Services.AddScoped<IQueryHandler<GetAllTransacoesQuery, List<TransacaoDto>>, GetAllTransacoesHandler>();
 builder.Services.AddScoped<IQueryHandler<GetTransacaoByIdQuery, TransacaoDto?>, GetTransacaoByIdHandler>();
-builder.Services.AddScoped<IQueryHandler<GetAllPessoasNomeQuery, List<PessoaNomeDto?>>, GetAllPessoasNomeHandler>();
+builder.Services.AddScoped<IQueryHandler<GetAllTotalReceitasDespesasSaldoPessoasQuery, List<PessoaTotalReceitaDespesasSaldoDto?>>, GetAllTotalReceitasDespesasSaldoPessoasHandler>();
 
 // Add services to the container.
 builder.Services.AddControllers();
