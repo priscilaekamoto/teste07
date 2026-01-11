@@ -85,3 +85,5 @@ publish/
 coverage/
 *.coverage
 *.coveragexml
+
+frontend
