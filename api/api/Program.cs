@@ -36,6 +36,18 @@ builder.Services.AddScoped<IQueryHandler<GetTransacaoByIdQuery, TransacaoDto?>, 
 builder.Services.AddScoped<IQueryHandler<GetAllTotalReceitasDespesasSaldoPessoasQuery, List<PessoaTotalReceitaDespesasSaldoDto>>, GetAllTotalReceitasDespesasSaldoPessoasHandler>();
 builder.Services.AddScoped<IQueryHandler<GetAllTotalReceitasdespesasSaldoCategoriaQuery, List<CategoriaTotalReceitasDespesasSaldoDto>>, GetAllTotalReceitasDespesasSaldoCategoriaHandler>();
 
+// CORS for frontend (http://localhost:5173)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FrontendPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials(); // remove if you don't need credentials (cookies/auth)
+    });
+});
+
 // Add services to the container.
 builder.Services.AddControllers();
 
@@ -62,6 +74,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Apply CORS policy before authorization and endpoint middleware
+app.UseCors("FrontendPolicy");
 
 app.UseAuthorization();
 
