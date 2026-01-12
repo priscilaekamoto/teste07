@@ -7,6 +7,8 @@ import CategoriasList from '../pages/Categorias/CategoriasList';
 import CadastroCategoria from '../pages/Categorias/CadastroCategoria';
 import TransacaoList from '../pages/Transacoes/TransacaoList';
 import CadastroTransacao from '../pages/Transacoes/CadastroTransacao';
+import PessoasTotaisList from '../pages/TotaisPessoasCategorias/PessoasTotaisList';
+import CategoriaTotaisList from '../pages/TotaisPessoasCategorias/CategoriaTotaisList';
 
 const AppRoutes = () => {
   return (
@@ -41,6 +43,17 @@ const AppRoutes = () => {
         <Route
           path="/transacoes/cadastro"
           element={<ProtectedRoute><CadastroTransacao /></ProtectedRoute>}
+        />
+
+        <Route
+          path="/pessoas/totais"
+          element={<ProtectedRoute><PessoasTotaisList /></ProtectedRoute>}
+        />
+
+        
+        <Route
+          path="/categorias/totais"
+          element={<ProtectedRoute><CategoriaTotaisList /></ProtectedRoute>}
         />
       </Routes>
     </Router>
