@@ -6,6 +6,7 @@ import PessoasList from '../pages/Pessoas/PessoasList';
 import CategoriasList from '../pages/Categorias/CategoriasList';
 import CadastroCategoria from '../pages/Categorias/CadastroCategoria';
 import TransacaoList from '../pages/Transacoes/TransacaoList';
+import CadastroTransacao from '../pages/Transacoes/CadastroTransacao';
 
 const AppRoutes = () => {
   return (
@@ -35,6 +36,11 @@ const AppRoutes = () => {
          <Route
           path="/transacoes"
           element={<ProtectedRoute><TransacaoList /></ProtectedRoute>}
+        />
+
+        <Route
+          path="/transacoes/cadastro"
+          element={<ProtectedRoute><CadastroTransacao /></ProtectedRoute>}
         />
       </Routes>
     </Router>

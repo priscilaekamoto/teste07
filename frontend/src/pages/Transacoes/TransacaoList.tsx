@@ -11,6 +11,9 @@ import {
 import Layout from "../../components/Layout";
 import BackButton from "../../components/buttons/BackButton";
 import { getTransacoes } from "../../data/services/api";
+import { useNavigate } from "react-router-dom";
+import AddButton from "../../components/buttons/GenericButton";
+import { FiPlusCircle } from "react-icons/fi";
 
 interface Categoria {
     id: number;
@@ -50,7 +53,7 @@ tipos[1] = "Receita";
 tipos[2] = "Despesa";
 
 const TransacaoList = () => {
-    
+    const navigate = useNavigate();
     const padding = useBreakpointValue({ base: 4, md: 8 });
     const [transacoes, setTransacoes] = useState<Transacao[]>([]);
     
@@ -81,12 +84,12 @@ const TransacaoList = () => {
                         <BackButton to="/" />
                         <Heading fontSize="2xl">Transações</Heading>
                     </HStack>
-                    {/* <AddButton
+                    <AddButton
                         text="Adicionar Transação"
                         icon={FiPlusCircle}
                         colorPalette="black"
-                        onClick={() => navigate("/categorias/cadastro")}
-                    /> */}
+                        onClick={() => navigate("/transacoes/cadastro")}
+                    />
                 </Flex>
 
                 {/* Tabela */}
