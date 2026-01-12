@@ -26,8 +26,8 @@ namespace api.Application.Transacoes.Handlers
                     Descricao = t.Descricao,
                     Valor = t.Valor,
                     Tipo = t.Tipo,
-                    CategoriaId = t.CategoriaId,
-                    PessoaId = t.PessoaId
+                    Categoria = new CategoriaDto() { Descricao = t.Categoria.Descricao, Id = t.Categoria.Id},
+                    Pessoa = new PessoaDto() { Nome = t.Pessoa.Nome, Id = t.Pessoa.Id }
                 }) .ToListAsync();
         }
     }
