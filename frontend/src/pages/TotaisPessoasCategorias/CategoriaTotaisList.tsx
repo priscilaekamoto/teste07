@@ -4,8 +4,7 @@ import {
     Flex,
     Heading,
     HStack,
-    Table,
-    useBreakpointValue,
+    Table
 } from "@chakra-ui/react";
 import Layout from "../../components/Layout";
 import BackButton from "../../components/buttons/BackButton";
@@ -22,10 +21,7 @@ interface Categoria {
 
 const CategoriaTotaisList = () => {
 
-    const padding = useBreakpointValue({ base: 4, md: 8 });
-
     const [categoria, setCategoria] = useState<Categoria[]>([]);
-
     const fetchCategoria = async () => {
         try {
             const response = await getTotalReceitasDespesasSaldoPorCategoria();
@@ -43,16 +39,13 @@ const CategoriaTotaisList = () => {
     return (
         <Layout>
             <ToastContainer position="top-center" />
-            <Box p={padding}>
-                {/* Header */}
+            <Box>
                 <Flex justify="space-between" align="center" mb={4}>
                     <HStack>
                         <BackButton to="/" />
                         <Heading fontSize="2xl"> Total de Receita, Despesa e Saldo Por Categoria</Heading>
                     </HStack>
                 </Flex>
-
-                {/* Tabela */}
                 <Box overflowX="auto" borderRadius="md" boxShadow="sm">
                     <Table.Root size="md">
                         <Table.Header>
@@ -61,7 +54,6 @@ const CategoriaTotaisList = () => {
                                 <Table.ColumnHeader>Total Receita</Table.ColumnHeader>
                                 <Table.ColumnHeader>Total Despesa</Table.ColumnHeader>
                                 <Table.ColumnHeader>Saldo</Table.ColumnHeader>
-
                             </Table.Row>
                         </Table.Header>
 
@@ -82,7 +74,6 @@ const CategoriaTotaisList = () => {
                 </Box>
             </Box>
         </Layout>
-
     );
 };
 

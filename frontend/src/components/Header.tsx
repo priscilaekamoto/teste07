@@ -34,8 +34,8 @@ const Header = () => {
       boxShadow="md"
       as="header"
     >
-      <Heading fontSize="2xl" color="black">
-        Teste07
+      <Heading fontSize="2xl" color="black" onClick={() => navigate('/')}>
+        Sistema para Gerenciamento de Gastos
       </Heading>
 
       <Flex gap={4}>
@@ -44,9 +44,6 @@ const Header = () => {
             Início
           </Button>
         )}
-
-        <Button variant="ghost">Ajuda</Button>
-        <Button variant="ghost">Configurações</Button>
 
         {/* Só mostra os botões quando auth já carregou */}
         {initialized && (

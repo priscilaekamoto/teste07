@@ -48,8 +48,7 @@ const PessoasList = () => {
   return (
     <Layout>
       <ToastContainer position="top-center" />
-      <Box p={padding}>
-        {/* Header */}
+      <Box>
         <Flex justify="space-between" align="center" mb={4}>
           <HStack>
             <BackButton to="/" />
@@ -63,7 +62,6 @@ const PessoasList = () => {
           />
         </Flex>
 
-        {/* Tabela */}
         <Box overflowX="auto" borderRadius="md" boxShadow="sm">
           <Table.Root size="md">
             <Table.Header>
@@ -82,7 +80,6 @@ const PessoasList = () => {
                 >
                   <Table.Cell fontWeight="bold">{pessoa?.nome}</Table.Cell>
                   <Table.Cell>{pessoa?.idade}</Table.Cell>
-                  {/* Coluna de ações */}
                   <Table.Cell>
                     <HStack gap={2}>
                       <DeleteButton

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import Layout from '../../components/Layout';
-import { Flex, HStack, Button, Icon, Heading, Box, Input } from "@chakra-ui/react";
-import { FiArrowLeft, FiPlusCircle } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { Flex, HStack, Heading, Box, Input } from "@chakra-ui/react";
+import { FiPlusCircle } from "react-icons/fi";
 import GenericButton from "../../components/buttons/GenericButton";
 import { createPessoa } from "../../data/services/api";
 import { toast, ToastContainer } from "react-toastify";
+import BackButton from "@/components/buttons/BackButton";
 
 function CadastroPessoa() {
-    const navigate = useNavigate();
     const [mostrarErros, setMostrarErros] = useState(false);
     const [formData, setFormData] = useState({
         nome: '',
@@ -55,9 +54,7 @@ function CadastroPessoa() {
                 <form>
                     <Flex justify="space-between" align="center" mb={4}>
                         <HStack>
-                            <Button onClick={() => navigate(`/pessoas`)} mr={4}>
-                                <Icon as={FiArrowLeft} fontSize="2xl" />
-                            </Button>
+                            <BackButton to="/pessoas" />
                             <Heading fontSize="2xl">Cadastro de Pessoa</Heading>
                         </HStack>
                     </Flex>
