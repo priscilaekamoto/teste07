@@ -13,10 +13,12 @@ export const getPessoas = () => api.get("/Pessoas");
 export const deletePessoaById = (id: number) => api.delete(`/Pessoas/${id}`);
 export const createPessoa = (data: any) => api.post("/Pessoas", data);
 export const getPessoaById = (id: number) => api.get(`/Pessoas/${id}`);
+export const getTotaisReceitasDespesasSaldoPorPessoa = () => api.get("/Pessoas/TotalReceitasDespesasSaldo");
 
 // Serviços de Categorias
 export const getCategorias = () => api.get("/Categorias");
 export const createCategoria = (data: any) => api.post("/Categorias", data);
+export const getTotalReceitasDespesasSaldoPorCategoria = () => api.get("/Categorias/TotalReceitasDespesasSaldo");
 
 // Serviços de Transações
 export const getTransacoes = () => api.get("/Transacoes");

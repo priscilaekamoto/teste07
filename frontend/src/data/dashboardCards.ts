@@ -33,6 +33,22 @@ export const dashboardCards: DashboardCardData[] = [
     icon: FiDollarSign,
     buttonText: 'Ver transações',
     buttonAction: (navigate) => navigate('/transacoes'),
+  },
+
+  {
+    title: 'Visualizar Total Por Pessoa',
+    description: 'Visualização dos totais das receitas, despesas e saldo por pessoa cadastrada',
+    icon: FiDollarSign,
+    buttonText: 'Ver total por pessoa',
+    buttonAction: (navigate) => navigate('/pessoas/totais'),
+  },
+
+   {
+    title: 'Visualizar Total Por Categoria',
+    description: 'Visualização dos totais das receitas, despesas e saldo por categoria cadastrada',
+    icon: FiDollarSign,
+    buttonText: 'Ver total por categoria',
+    buttonAction: (navigate) => navigate('/categorias/totais'),
   }
 
 ];
