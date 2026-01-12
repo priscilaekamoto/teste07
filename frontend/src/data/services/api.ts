@@ -12,10 +12,14 @@ const api = axios.create({
 export const getPessoas = () => api.get("/Pessoas");
 export const deletePessoaById = (id: number) => api.delete(`/Pessoas/${id}`);
 export const createPessoa = (data: any) => api.post("/Pessoas", data);
+export const getPessoaById = (id: number) => api.get(`/Pessoas/${id}`);
 
 // Serviços de Categorias
 export const getCategorias = () => api.get("/Categorias");
 export const createCategoria = (data: any) => api.post("/Categorias", data);
+
+// Serviços de Transações
+export const getTransacoes = () => api.get("/Transacoes");
 
 // interceptador para incluir token no futuro
 api.interceptors.request.use(

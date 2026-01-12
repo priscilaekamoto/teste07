@@ -47,9 +47,9 @@ namespace api.Application.Transacoes.Handlers
                 {
                     return new TransacaoDto
                     {
-                        CategoriaId = command.CategoriaId,
+                        Categoria = new CategoriaDto() { Descricao = transacao.Categoria.Descricao, Id = transacao.Categoria.Id },
                         Descricao = command.Descricao,
-                        PessoaId = command.PessoaId,
+                        Pessoa = new PessoaDto() {Id =transacao.Pessoa.Id, Nome = transacao.Pessoa.Nome },
                         Tipo = command.Tipo,
                         Valor = command.Valor,
                         Messages = ret.Messages,
@@ -61,7 +61,15 @@ namespace api.Application.Transacoes.Handlers
                 await _uow.SaveChangesAsync(cancellationToken);
                 await _uow.CommitAsync(cancellationToken);
 
-                return new TransacaoDto { Id = transacao.Id, Descricao = transacao.Descricao, Valor = transacao.Valor, Tipo = transacao.Tipo, CategoriaId = transacao.CategoriaId, PessoaId = transacao.PessoaId };
+                return new TransacaoDto { 
+                    Id = transacao.Id, 
+                    Descricao = transacao.Descricao, 
+                    Valor = transacao.Valor, 
+                    Tipo = transacao.Tipo, 
+                    Categoria = new CategoriaDto() { Descricao = transacao.Categoria.Descricao, Id = transacao.Categoria.Id }, 
+                    Pessoa = new PessoaDto() { Nome = transacao.Pessoa.Nome, Id = transacao.Pessoa.Id } 
+                };
+
             } catch
             {
                 await _uow.RollbackAsync(cancellationToken);

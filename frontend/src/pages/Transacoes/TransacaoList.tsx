@@ -1,0 +1,126 @@
+import { useEffect, useState } from "react";
+import {
+    Box,
+    Flex,
+    Heading,
+    HStack,
+    Table,
+    useBreakpointValue,
+} from "@chakra-ui/react";
+
+import Layout from "../../components/Layout";
+import BackButton from "../../components/buttons/BackButton";
+import { getTransacoes } from "../../data/services/api";
+
+interface Categoria {
+    id: number;
+    descricao: string;
+    finalidade: Finalidade;    
+}
+
+enum Finalidade {
+    Receita = 1,
+    Despesa = 2,
+    Ambas = 3,
+}
+
+enum Tipo {
+    Receita = 1,
+    Despesa = 2
+}
+
+interface Transacao {
+    id: number;
+    descricao: string;
+    valor: number;
+    tipo: Tipo;
+    categoriaId: number;
+    pessoaId: number;
+    categoria?: Categoria;
+    pessoa?: Pessoa;
+}
+
+interface Pessoa {
+    id: number;
+    nome: string;
+}
+
+const tipos = new Array();
+tipos[1] = "Receita";
+tipos[2] = "Despesa";
+
+const TransacaoList = () => {
+    
+    const padding = useBreakpointValue({ base: 4, md: 8 });
+    const [transacoes, setTransacoes] = useState<Transacao[]>([]);
+    
+    const fetchTransacoes = async () => {
+        try {
+            const response = await getTransacoes();
+            const data = response.data;
+            console.log("Transações buscadas:", data);
+            setTransacoes(data);
+            
+        } catch (error) {
+            console.error("Erro ao buscar transações:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchTransacoes();
+    }, []);
+
+    
+    return (
+        <Layout>
+
+            <Box p={padding}>
+                {/* Header */}
+                <Flex justify="space-between" align="center" mb={4}>
+                    <HStack>
+                        <BackButton to="/" />
+                        <Heading fontSize="2xl">Transações</Heading>
+                    </HStack>
+                    {/* <AddButton
+                        text="Adicionar Transação"
+                        icon={FiPlusCircle}
+                        colorPalette="black"
+                        onClick={() => navigate("/categorias/cadastro")}
+                    /> */}
+                </Flex>
+
+                {/* Tabela */}
+                <Box overflowX="auto" borderRadius="md" boxShadow="sm">
+                    <Table.Root size="md">
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.ColumnHeader>Descrição</Table.ColumnHeader>
+                                <Table.ColumnHeader>Valor</Table.ColumnHeader>
+                                <Table.ColumnHeader>Tipo</Table.ColumnHeader>
+                                <Table.ColumnHeader>Categoria</Table.ColumnHeader>
+                                <Table.ColumnHeader>Pessoa</Table.ColumnHeader>
+                            </Table.Row>
+                        </Table.Header>
+
+                        <Table.Body>
+                            {transacoes?.map((transacao) => (
+                                <Table.Row
+                                    key={transacao?.id}
+                                    _hover={{ bg: "gray.50", cursor: "pointer" }}
+                                >
+                                    <Table.Cell fontWeight="bold">{transacao?.descricao}</Table.Cell>
+                                    <Table.Cell>{transacao?.valor}</Table.Cell>
+                                    <Table.Cell>{tipos[transacao?.tipo]}</Table.Cell>
+                                    <Table.Cell>{transacao?.categoria?.descricao}</Table.Cell>
+                                    <Table.Cell>{transacao?.pessoa?.nome}</Table.Cell>
+                                </Table.Row>
+                            ))}
+                        </Table.Body>
+                    </Table.Root>
+                </Box>
+            </Box>
+        </Layout>
+    );
+};
+
+export default TransacaoList;

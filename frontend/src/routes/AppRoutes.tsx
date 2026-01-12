@@ -4,7 +4,8 @@ import { ProtectedRoute } from './ProtectedRoute';
 import CadastroPessoa from '../pages/Pessoas/CadastroPessoa';
 import PessoasList from '../pages/Pessoas/PessoasList';
 import CategoriasList from '../pages/Categorias/CategoriasList';
-import CadastroCategoria from '@/pages/Categorias/CadastroCategoria';
+import CadastroCategoria from '../pages/Categorias/CadastroCategoria';
+import TransacaoList from '../pages/Transacoes/TransacaoList';
 
 const AppRoutes = () => {
   return (
@@ -29,6 +30,11 @@ const AppRoutes = () => {
         <Route
           path="/categorias/cadastro"
           element={<ProtectedRoute><CadastroCategoria /></ProtectedRoute>}
+        />
+
+         <Route
+          path="/transacoes"
+          element={<ProtectedRoute><TransacaoList /></ProtectedRoute>}
         />
       </Routes>
     </Router>

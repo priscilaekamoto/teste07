@@ -24,8 +24,16 @@ namespace api.Application.Transacoes.Handlers
                     Descricao = t.Descricao,
                     Valor = t.Valor,
                     Tipo = t.Tipo,
-                    CategoriaId = t.CategoriaId,
-                    PessoaId = t.PessoaId
+                    Categoria = new CategoriaDto
+                    {
+                        Id = t.CategoriaId,
+                        Descricao = t.Categoria.Descricao
+                    },
+                    Pessoa = new PessoaDto
+                    {
+                        Id = t.PessoaId,
+                        Nome = t.Pessoa.Nome
+                    }
                 };
         }
     }
