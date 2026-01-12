@@ -110,25 +110,6 @@ const PessoasList = () => {
           </Table.Root>
         </Box>
       </Box>
-      <Box p={padding}>
-        <Flex justify="center" align="center" mt={4} gap={2}>
-          {/* <button
-            disabled={pageNumber === 1}
-            onClick={() => setPageNumber(prev => prev - 1)}
-          >
-            Anterior
-          </button> */}
-
-          {/* <span>{pageNumber} / {totalPages}</span>
-
-          <button
-            disabled={pageNumber === totalPages}
-            onClick={() => setPageNumber(prev => prev + 1)}
-          >
-            Próxima
-          </button> */}
-        </Flex>
-      </Box>
     </Layout>
 
   );

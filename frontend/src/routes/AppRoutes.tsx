@@ -1,9 +1,10 @@
 import Home from '../pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import { ProtectedRoute } from './ProtectedRoute';
 import CadastroPessoa from '../pages/Pessoas/CadastroPessoa';
 import PessoasList from '../pages/Pessoas/PessoasList';
+import CategoriasList from '../pages/Categorias/CategoriasList';
+import CadastroCategoria from '@/pages/Categorias/CadastroCategoria';
 
 const AppRoutes = () => {
   return (
@@ -18,6 +19,16 @@ const AppRoutes = () => {
         <Route
           path="/pessoas/cadastro"
           element={<ProtectedRoute><CadastroPessoa /></ProtectedRoute>}
+        />
+
+         <Route
+          path="/categorias"
+          element={<ProtectedRoute><CategoriasList /></ProtectedRoute>}
+        />
+
+        <Route
+          path="/categorias/cadastro"
+          element={<ProtectedRoute><CadastroCategoria /></ProtectedRoute>}
         />
       </Routes>
     </Router>
