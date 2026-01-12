@@ -76,9 +76,7 @@ const TransacaoList = () => {
     
     return (
         <Layout>
-
-            <Box p={padding}>
-                {/* Header */}
+            <Box>
                 <Flex justify="space-between" align="center" mb={4}>
                     <HStack>
                         <BackButton to="/" />
@@ -91,10 +89,8 @@ const TransacaoList = () => {
                         onClick={() => navigate("/transacoes/cadastro")}
                     />
                 </Flex>
-
-                {/* Tabela */}
                 <Box overflowX="auto" borderRadius="md" boxShadow="sm">
-                    <Table.Root size="md">
+                    <Table.Root>
                         <Table.Header>
                             <Table.Row>
                                 <Table.ColumnHeader>Descrição</Table.ColumnHeader>

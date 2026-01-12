@@ -47,9 +47,9 @@ namespace api.Application.Transacoes.Handlers
                 {
                     return new TransacaoDto
                     {
-                        Categoria = new CategoriaDto() { Descricao = transacao.Categoria.Descricao, Id = transacao.Categoria.Id },
+                        Categoria = new CategoriaDto() { Descricao = categoria.Descricao, Id = categoria.Id },
                         Descricao = command.Descricao,
-                        Pessoa = new PessoaDto() {Id =transacao.Pessoa.Id, Nome = transacao.Pessoa.Nome },
+                        Pessoa = new PessoaDto() {Id = pessoa.Id, Nome = pessoa.Nome },
                         Tipo = command.Tipo,
                         Valor = command.Valor,
                         Messages = ret.Messages,

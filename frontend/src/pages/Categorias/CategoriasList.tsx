@@ -49,9 +49,7 @@ const CategoriasList = () => {
 
     return (
         <Layout>
-
-            <Box p={padding}>
-                {/* Header */}
+            <Box>
                 <Flex justify="space-between" align="center" mb={4}>
                     <HStack>
                         <BackButton to="/" />
@@ -64,8 +62,6 @@ const CategoriasList = () => {
                         onClick={() => navigate("/categorias/cadastro")}
                     />
                 </Flex>
-
-                {/* Tabela */}
                 <Box overflowX="auto" borderRadius="md" boxShadow="sm">
                     <Table.Root size="md">
                         <Table.Header>

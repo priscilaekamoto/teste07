@@ -1,27 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Layout from '../../components/Layout';
-import { Flex, HStack, Button, Icon, Heading, Box, Input } from "@chakra-ui/react";
-import { FiArrowLeft, FiPlusCircle } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { Flex, HStack, Heading, Box, Input } from "@chakra-ui/react";
+import { FiPlusCircle } from "react-icons/fi";
 import GenericButton from "../../components/buttons/GenericButton";
 import { createCategoria } from "../../data/services/api";
 import { toast, ToastContainer } from "react-toastify";
-
 import CustomSelect from '../../components/select/CustomSelect';
+import BackButton from "@/components/buttons/BackButton";
 
 function CadastroCategoria() {
-    const navigate = useNavigate();
 
     const [mostrarErros, setMostrarErros] = useState(false);
     const [enums, setEnums] = useState<any>({});
     const [selecionarFinalidade, setSelecionarFinalidade] = useState<number | string>('');
-
-
-    const [formData, setFormData] = useState({
-        descricao: '',
-
-    });
-
+    const [formData, setFormData] = useState({ descricao: ''});
     const fetchFinalidadesEnum = () => {
         const finalidadeEnum = {
             Finalidade: [
@@ -36,7 +28,6 @@ function CadastroCategoria() {
     useEffect(() => {
         fetchFinalidadesEnum();
     }, []);
-
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -78,9 +69,7 @@ function CadastroCategoria() {
                 <form>
                     <Flex justify="space-between" align="center" mb={4}>
                         <HStack>
-                            <Button onClick={() => navigate(`/categorias`)} mr={4}>
-                                <Icon as={FiArrowLeft} fontSize="2xl" />
-                            </Button>
+                            <BackButton to="/categorias" />
                             <Heading fontSize="2xl">Cadastro de Categoria</Heading>
                         </HStack>
                     </Flex>
