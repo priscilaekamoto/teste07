@@ -20,6 +20,7 @@ export const createCategoria = (data: any) => api.post("/Categorias", data);
 
 // Serviços de Transações
 export const getTransacoes = () => api.get("/Transacoes");
+export const createTransacao = (data: any) => api.post("/Transacoes", data);
 
 // interceptador para incluir token no futuro
 api.interceptors.request.use(
