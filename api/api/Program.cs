@@ -15,6 +15,8 @@ using api.Application.Transacoes.Queries;
 using api.Shared.Dtos;
 using api.Shared.Mediator.Dispatcher;
 using api.Shared.Mediator.Interfaces;
+using System.Reflection;
+using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IDispatcher, Dispatcher>();
@@ -44,7 +46,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("http://localhost:5173")
               .AllowAnyHeader()
               .AllowAnyMethod()
-              .AllowCredentials(); // remove if you don't need credentials (cookies/auth)
+              .AllowCredentials();
     });
 });
 
@@ -60,9 +62,17 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-// Swagger / OpenAPI
+// Swagger / OpenAPI - include XML comments (ensure XML documentation file is generated in csproj)
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+    {
+        c.IncludeXmlComments(xmlPath);
+    }
+});
 
 var app = builder.Build();
 
@@ -75,7 +85,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Apply CORS policy before authorization and endpoint middleware
+// Apply CORS policy before authorization and endpoints
 app.UseCors("FrontendPolicy");
 
 app.UseAuthorization();
