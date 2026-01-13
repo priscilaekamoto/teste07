@@ -4,8 +4,7 @@ import {
     Flex,
     Heading,
     HStack,
-    Table,
-    useBreakpointValue,
+    Table
 } from "@chakra-ui/react";
 
 import Layout from "../../components/Layout";
@@ -14,39 +13,7 @@ import { getTransacoes } from "../../data/services/api";
 import { useNavigate } from "react-router-dom";
 import AddButton from "../../components/buttons/GenericButton";
 import { FiPlusCircle } from "react-icons/fi";
-
-interface Categoria {
-    id: number;
-    descricao: string;
-    finalidade: Finalidade;    
-}
-
-enum Finalidade {
-    Receita = 1,
-    Despesa = 2,
-    Ambas = 3,
-}
-
-enum Tipo {
-    Receita = 1,
-    Despesa = 2
-}
-
-interface Transacao {
-    id: number;
-    descricao: string;
-    valor: number;
-    tipo: Tipo;
-    categoriaId: number;
-    pessoaId: number;
-    categoria?: Categoria;
-    pessoa?: Pessoa;
-}
-
-interface Pessoa {
-    id: number;
-    nome: string;
-}
+import { TransacaoData } from "@/types";
 
 const tipos = new Array();
 tipos[1] = "Receita";
@@ -54,8 +21,7 @@ tipos[2] = "Despesa";
 
 const TransacaoList = () => {
     const navigate = useNavigate();
-    const padding = useBreakpointValue({ base: 4, md: 8 });
-    const [transacoes, setTransacoes] = useState<Transacao[]>([]);
+    const [transacoes, setTransacoes] = useState<TransacaoData[]>([]);
     
     const fetchTransacoes = async () => {
         try {

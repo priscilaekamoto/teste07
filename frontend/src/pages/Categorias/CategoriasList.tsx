@@ -4,8 +4,7 @@ import {
     Flex,
     Heading,
     HStack,
-    Table,
-    useBreakpointValue,
+    Table
 } from "@chakra-ui/react";
 
 import { useNavigate } from "react-router-dom";
@@ -14,25 +13,11 @@ import BackButton from "../../components/buttons/BackButton";
 import AddButton from "../../components/buttons/GenericButton";
 import { FiPlusCircle } from "react-icons/fi";
 import { getCategorias } from "../../data/services/api";
-
-interface Categoria {
-    id: number;
-    descricao: string;
-    finalidade: Finalidade;
-}
-
-enum Finalidade {
-    Receita = 1,
-    Despesa = 2,
-    Ambas = 3,
-}
+import { CategoriaDb, Finalidade } from "@/types";
 
 const CategoriasList = () => {
     const navigate = useNavigate();
-    const padding = useBreakpointValue({ base: 4, md: 8 });
-
-    const [categorias, setCategorias] = useState<Categoria[]>([]);
-    
+    const [categorias, setCategorias] = useState<CategoriaDb[]>([]);
     const fetchCategorias = async () => {
         try {
             const response = await getCategorias();

@@ -7,6 +7,7 @@ import { createCategoria } from "../../data/services/api";
 import { toast, ToastContainer } from "react-toastify";
 import CustomSelect from '../../components/select/CustomSelect';
 import BackButton from "@/components/buttons/BackButton";
+import { handleAxiosValidationError } from "@/utils";
 
 function CadastroCategoria() {
 
@@ -42,7 +43,7 @@ function CadastroCategoria() {
 
     const handleSubmit = async () => {
 
-        if (!formData.descricao) {
+        if (!formData.descricao.trim()) {
             setMostrarErros(true);
             toast.warn("Por favor, preencha todos os campos antes de salvar.");
             return;
@@ -59,7 +60,8 @@ function CadastroCategoria() {
             limpaFormulario();
             setSelecionarFinalidade('');
         } catch (error) {
-            toast.error("Erro ao salvar a categoria. Por favor, tente novamente.");
+            // Erros Validators ou Exceptions
+            handleAxiosValidationError(error);
         }
     }
 
@@ -82,7 +84,7 @@ function CadastroCategoria() {
                                 value={formData.descricao}
                                 onChange={handleChange}
                             />
-                            {mostrarErros && !formData.descricao && <Box color="red.500" fontSize="sm" height={"100%"} visibility={mostrarErros && !formData.descricao ? "visible" : "hidden"}>Campo obrigatório</Box>}
+                            {mostrarErros && !formData.descricao.trim() && <Box color="red.500" fontSize="sm" height={"100%"} visibility={mostrarErros && !formData.descricao.trim() ? "visible" : "hidden"}>Campo obrigatório</Box>}
                         </Flex>
 
                         <Flex direction="column" w="200px" h="100%">

@@ -11,7 +11,7 @@ const api = axios.create({
 // Serviços de Pessoas
 export const getPessoas = () => api.get("/Pessoas");
 export const deletePessoaById = (id: number) => api.delete(`/Pessoas/${id}`);
-export const createPessoa = (data: any) => api.post("/Pessoas", data);
+export const createPessoa = (data: any) => { return api.post("/Pessoas", data); };
 export const getPessoaById = (id: number) => api.get(`/Pessoas/${id}`);
 export const getTotaisReceitasDespesasSaldoPorPessoa = () => api.get("/Pessoas/TotalReceitasDespesasSaldo");
 

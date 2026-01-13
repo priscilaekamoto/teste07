@@ -1,6 +1,6 @@
 namespace api.Shared.Dtos
 {
-    public class PessoaDto
+    public class PessoaDto: ResultDto
     {
         public int Id { get; set; }
         public string Nome { get; set; } = null!;

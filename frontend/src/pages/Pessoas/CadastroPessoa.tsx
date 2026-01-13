@@ -6,6 +6,7 @@ import GenericButton from "../../components/buttons/GenericButton";
 import { createPessoa } from "../../data/services/api";
 import { toast, ToastContainer } from "react-toastify";
 import BackButton from "@/components/buttons/BackButton";
+import { handleAxiosValidationError } from "@/utils";
 
 function CadastroPessoa() {
     const [mostrarErros, setMostrarErros] = useState(false);
@@ -28,7 +29,7 @@ function CadastroPessoa() {
 
     const handleSubmit = async () => {
 
-        if (!formData.nome || !formData.idade) {
+        if (!formData.nome.trim() || !formData.idade) {
             setMostrarErros(true);
             toast.warn("Por favor, preencha todos os campos antes de salvar.");
             return;
@@ -44,7 +45,7 @@ function CadastroPessoa() {
             setMostrarErros(false);
             limpaFormulario();
         } catch (error) {
-            toast.error("Erro ao salvar a pessoa. Por favor, tente novamente.");
+            handleAxiosValidationError(error);
         }
     }
 
@@ -67,7 +68,7 @@ function CadastroPessoa() {
                                 value={formData.nome}
                                 onChange={handleChange}
                             />
-                            {mostrarErros && !formData.nome && <Box color="red.500" fontSize="sm" height={"100%"} visibility={mostrarErros && !formData.nome  ? "visible" : "hidden"}>Campo obrigatório</Box>}
+                            {mostrarErros && !formData.nome.trim() && <Box color="red.500" fontSize="sm" height={"100%"} visibility={mostrarErros && !formData.nome.trim()  ? "visible" : "hidden"}>Campo obrigatório</Box>}
                         </Flex>
 
                         <Flex direction="column" w="200px" h="100%">
@@ -76,6 +77,14 @@ function CadastroPessoa() {
                                 name="idade"
                                 value={formData.idade}
                                 onChange={handleChange}
+                                min={0}
+                                max={120}
+                                step={1}
+                                onKeyDown={(e) => {
+                                    if (e.key === "-" || e.key === "e") {
+                                        e.preventDefault();
+                                    }
+                                }}
                             />
                             {mostrarErros && !formData.idade && <Box color="red.500" fontSize="sm" minH="18px" visibility={mostrarErros && !formData.idade ? "visible" : "hidden"}>Campo obrigatório</Box>}
                         </Flex>
