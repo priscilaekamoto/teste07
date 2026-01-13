@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import AddButton from "../../components/buttons/GenericButton";
 import { FiPlusCircle } from "react-icons/fi";
 import { TransacaoData } from "@/types";
+import { formatCurrency } from "@/utils";
 
 const tipos = new Array();
 tipos[1] = "Receita";
@@ -74,7 +75,7 @@ const TransacaoList = () => {
                                     _hover={{ bg: "gray.50", cursor: "pointer" }}
                                 >
                                     <Table.Cell fontWeight="bold">{transacao?.descricao}</Table.Cell>
-                                    <Table.Cell>{transacao?.valor}</Table.Cell>
+                                    <Table.Cell>{formatCurrency(transacao?.valor)}</Table.Cell>
                                     <Table.Cell>{tipos[transacao?.tipo]}</Table.Cell>
                                     <Table.Cell>{transacao?.categoria?.descricao}</Table.Cell>
                                     <Table.Cell>{transacao?.pessoa?.nome}</Table.Cell>
