@@ -7,5 +7,9 @@ namespace api.Application.Pessoas.Queries
     {
         public int Id { get; set; }
         public GetPessoaByIdQuery(int id) => Id = id;
+        public GetPessoaByIdQuery()
+        {
+            
+        }
     }
 }
