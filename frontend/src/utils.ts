@@ -20,3 +20,12 @@ export function handleAxiosValidationError(error: unknown): boolean {
 
   return true;
 }
+
+export function formatCurrency (value: number) 
+{
+  return value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+}
+    
