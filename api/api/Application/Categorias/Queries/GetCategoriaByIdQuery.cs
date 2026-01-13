@@ -9,6 +9,10 @@ namespace api.Application.Categorias.Queries
         {
             Id = id;
         }
+        public GetCategoriaByIdQuery()
+        {
+            
+        }
 
         public int Id { get; set; }
     }

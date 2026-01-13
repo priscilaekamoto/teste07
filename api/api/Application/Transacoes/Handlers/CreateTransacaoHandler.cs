@@ -23,6 +23,9 @@ namespace api.Application.Transacoes.Handlers
 
             try
             {
+                if(command.Valor < 0)
+                    return new TransacaoDto() { Code = StatusCodes.Status400BadRequest, Messages = new List<string> { "Valor deve ser positivo!" } };
+
                 var transacao = new Transacao
                 {
                     Descricao = command.Descricao,
