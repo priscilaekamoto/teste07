@@ -10,22 +10,15 @@ import Layout from "../../components/Layout";
 import BackButton from "../../components/buttons/BackButton";
 import { getTotalReceitasDespesasSaldoPorCategoria } from "../../data/services/api";
 import { ToastContainer } from "react-toastify";
-
-interface Categoria {
-    id: number;
-    descricao: string;
-    totalReceita: number;
-    totalDespesa: number;
-    saldo: number;
-}
+import { CategoriaTotal } from "@/types";
 
 const CategoriaTotaisList = () => {
 
-    const [categoria, setCategoria] = useState<Categoria[]>([]);
+    const [categoria, setCategoria] = useState<CategoriaTotal[]>([]);
     const fetchCategoria = async () => {
         try {
-            const response = await getTotalReceitasDespesasSaldoPorCategoria();
-            const data = response.data;
+            let response = await getTotalReceitasDespesasSaldoPorCategoria();
+            let data = response.data;
             setCategoria(data);
         } catch (error) {
             console.error("Erro ao buscar totais :", error);

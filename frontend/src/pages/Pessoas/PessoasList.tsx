@@ -4,8 +4,7 @@ import {
   Flex,
   Heading,
   HStack,
-  Table,
-  useBreakpointValue,
+  Table
 } from "@chakra-ui/react";
 
 import { useNavigate } from "react-router-dom";
@@ -17,18 +16,10 @@ import { FiPlusCircle } from "react-icons/fi";
 import { getPessoas } from "../../data/services/api";
 import { toast, ToastContainer } from "react-toastify";
 import { deletePessoaById } from "../../data/services/api";
-
-
-interface Pessoa {
-  id: number;
-  nome: string;
-  idade: number;
-}
+import { Pessoa } from "@/types";
 
 const PessoasList = () => {
   const navigate = useNavigate();
-  const padding = useBreakpointValue({ base: 4, md: 8 });
-
   const [pessoas, setPessoas] = useState<Pessoa[]>([]);
 
   const fetchPessoas = async () => {

@@ -2,18 +2,15 @@ import React, { useState, useEffect } from "react";
 import Layout from '../../components/Layout';
 import { Flex, HStack, Heading, Box, Input } from "@chakra-ui/react";
 import { FiPlusCircle } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
 import GenericButton from "../../components/buttons/GenericButton";
 import { createTransacao, getCategorias, getPessoas } from "../../data/services/api";
 import { toast, ToastContainer } from "react-toastify";
 import CurrencyInput from 'react-currency-input-field';
 import CustomSelect from '../../components/select/CustomSelect';
 import BackButton from "@/components/buttons/BackButton";
-import AddButton from "../../components/buttons/GenericButton";
+import { handleAxiosValidationError } from "@/utils";
 
 function CadastroTransacao() {
-
-    const navigate = useNavigate();
 
     const [mostrarErros, setMostrarErros] = useState(false);
     const [enums, setEnums] = useState<any>({});
@@ -115,7 +112,8 @@ function CadastroTransacao() {
             setSelecionarCategoria('');
             setSelecionarPessoa('');
         } catch (error) {
-            toast.error("Erro ao salvar a transação. Por favor, tente novamente.");
+            // Erros Validators ou Exceptions
+            handleAxiosValidationError(error);
         }
     }
 
@@ -127,12 +125,6 @@ function CadastroTransacao() {
                         <BackButton to="/transacoes" />
                         <Heading fontSize="2xl">Cadastro de Transação</Heading>
                     </HStack>
-                    <AddButton
-                        text="Adicionar Transação"
-                        icon={FiPlusCircle}
-                        colorPalette="black"
-                        onClick={() => navigate("/transacoes/cadastro")}
-                    />
                 </Flex>
                 <form>
                     <Flex gap={8} mt={8} pl={20} align="start" h="100%">

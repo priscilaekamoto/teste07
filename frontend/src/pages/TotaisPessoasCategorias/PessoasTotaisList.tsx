@@ -10,21 +10,14 @@ import Layout from "../../components/Layout";
 import BackButton from "../../components/buttons/BackButton";
 import { getTotaisReceitasDespesasSaldoPorPessoa } from "../../data/services/api";
 import { ToastContainer } from "react-toastify";
-
-interface Pessoa {
-    id: number;
-    nome: string;
-    totalReceita: number;
-    totalDespesa: number;
-    saldo: number;
-}
+import { PessoaTotal } from "@/types";
 
 const PessoasTotaisList = () => {
-    const [pessoas, setPessoas] = useState<Pessoa[]>([]);
+    const [pessoas, setPessoas] = useState<PessoaTotal[]>([]);
     const fetchPessoas = async () => {
         try {
-            const response = await getTotaisReceitasDespesasSaldoPorPessoa();
-            const data = response.data;
+            let response = await getTotaisReceitasDespesasSaldoPorPessoa();
+            let data = response.data;
             setPessoas(data);
         } catch (error) {
             console.error("Erro ao buscar totais :", error);
