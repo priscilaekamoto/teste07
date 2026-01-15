@@ -6,6 +6,7 @@ Author: Priscila Cristina de Oliveira Vasconcelos Ekamoto
 Para subir o banco de dados mysql:8.0.31:
 - Entre na pasta docker
 - Execute o comando docker compose up -d
+- <img width="1051" height="429" alt="image" src="https://github.com/user-attachments/assets/f0ab6d28-61e9-44a9-8eb5-f8404c1cff31" />
 - Configure o keycloak
 - <img width="1030" height="680" alt="image" src="https://github.com/user-attachments/assets/53d08cc1-8360-4d5c-a8bb-42127bc1ab56" />
 - <img width="939" height="791" alt="image" src="https://github.com/user-attachments/assets/94f47975-6442-454e-b754-c4a0c62b682f" />
