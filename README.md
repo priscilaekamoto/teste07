@@ -3,7 +3,7 @@ Author: Priscila Cristina de Oliveira Vasconcelos Ekamoto
 # Sistema de Controle de Gastos Residenciais
 
 ## Passos para rodar a aplicação
-Para subir o banco de dados mysql:8.0.31:
+
 - Entre na pasta docker
 - Execute o comando docker compose up -d
   - <img width="1051" height="429" alt="image" src="https://github.com/user-attachments/assets/f0ab6d28-61e9-44a9-8eb5-f8404c1cff31" />
