@@ -38,10 +38,12 @@ logs/
 ############################################
 # Environment / Secrets
 ############################################
-.env
-.env.*
-appsettings.*.json
-!appsettings.json
+# É recomendado deixar .env e appsettings no .gitignore e versionar os arquivos de exemplo como .env.example e appsettings.example.json,
+# mas como se trata de um projeto público e não vai para produção, todos os arquivos de configuração não estão sendo ignorados.
+# .env
+# .env.*
+# appsettings.*.json
+# !appsettings.json
 
 ############################################
 # User secrets
