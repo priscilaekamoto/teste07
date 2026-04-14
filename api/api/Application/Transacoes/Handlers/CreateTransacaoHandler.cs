@@ -35,8 +35,8 @@ namespace api.Application.Transacoes.Handlers
                     PessoaId = command.PessoaId
                 };
 
-                var pessoa = _db.Pessoas.Find(command.PessoaId);
-                var categoria = _db.Categorias.Find(command.CategoriaId);
+                var pessoa =  await _db.Pessoas.FindAsync(command.PessoaId);
+                var categoria = await _db.Categorias.FindAsync(command.CategoriaId);
 
                 if (pessoa == null)
                     return new TransacaoDto() { Code = StatusCodes.Status400BadRequest, Messages = new List<string> { "Pessoal não encontrada!" } };
@@ -60,7 +60,7 @@ namespace api.Application.Transacoes.Handlers
                     };
                 }
 
-                _db.Transacoes.Add(transacao);
+                await _db.Transacoes.AddAsync(transacao);
                 await _uow.SaveChangesAsync(cancellationToken);
                 await _uow.CommitAsync(cancellationToken);
 

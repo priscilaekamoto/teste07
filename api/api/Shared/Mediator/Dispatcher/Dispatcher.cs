@@ -1,17 +1,16 @@
-﻿using api.Data;
-using api.Shared.Mediator.Interfaces;
+﻿using api.Shared.Mediator.Interfaces;
 
 namespace api.Shared.Mediator.Dispatcher
 {
     public class Dispatcher : IDispatcher
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly AppDbContext _context;
+       
         
-        public Dispatcher(IServiceProvider serviceProvider, AppDbContext context)
+        public Dispatcher(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-            _context = context;
+            
         }
 
         public async Task<TResponse> QueryAsync<TResponse>(IQuery<TResponse> query, CancellationToken cancellationToken = default)

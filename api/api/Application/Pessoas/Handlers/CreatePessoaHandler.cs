@@ -29,7 +29,7 @@ namespace api.Application.Pessoas.Handlers
                     Idade = command.Idade
                 };
 
-                _db.Pessoas.Add(pessoa);
+                await _db.Pessoas.AddAsync(pessoa);
                 await _uow.SaveChangesAsync(cancellationToken);
                 await _uow.CommitAsync(cancellationToken);
 
