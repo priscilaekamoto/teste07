@@ -1,5 +1,6 @@
 ﻿using api.Models.Enums;
 using api.Shared.Dtos;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api.Models
 {
@@ -7,12 +8,18 @@ namespace api.Models
     {
         public int Id { get; set; }
         public string Descricao { get; set; } = null!;
+
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Valor { get; set; }
         public TipoTransacao Tipo { get; set; }
         public int CategoriaId { get; set; }
         public Categoria Categoria { get; set; } = null!;
         public int PessoaId { get; set; }
         public Pessoa Pessoa { get; set; } = null!;
+        public  bool Fixo { get; set; } = false;
+        public  DateTime DataInicio { get; set; }
+        public  DateTime? DataFim { get; set; }
+        public TipoRecorrencia? Recorrencia { get; set; }
 
         public ResultDto Valid(Pessoa pessoa, Categoria categoria) 
         {

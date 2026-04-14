@@ -8,6 +8,6 @@ namespace api.Models
         public string Descricao { get; set; } = null!;
         public Finalidade Finalidade { get; set; }
         public ICollection<Transacao> Transacoes { get; set; } = new List<Transacao>();
-
+        
     }
 }
