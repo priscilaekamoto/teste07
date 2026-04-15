@@ -1,7 +1,9 @@
 ﻿using api.Application.Transacoes.Queries;
 using api.Data;
+using api.Models.Enums;
 using api.Shared.Dtos;
 using api.Shared.Mediator.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Application.Transacoes.Handlers
 {
@@ -16,9 +18,9 @@ namespace api.Application.Transacoes.Handlers
 
         public async Task<TransacaoDto?> HandleAsync(GetTransacaoByIdQuery query)
         {
-           var t = await _db.Transacoes.FindAsync(query.Id);
-              if (t == null) return null;
-                return new TransacaoDto
+          var  transacao = await _db.Transacoes
+                .Where(t => t.Id == query.Id)
+                .Select(t => new TransacaoDto
                 {
                     Id = t.Id,
                     Descricao = t.Descricao,
@@ -33,8 +35,15 @@ namespace api.Application.Transacoes.Handlers
                     {
                         Id = t.PessoaId,
                         Nome = t.Pessoa.Nome
-                    }
-                };
+                    },
+                    Fixo = t.Fixo,
+                    Recorrencia = (TipoRecorrencia)t.Recorrencia,
+                    DataInicio = t.DataInicio,
+                    DataFim = t.DataFim
+                })
+                .FirstOrDefaultAsync();
+
+            return transacao;
         }
     }
 }

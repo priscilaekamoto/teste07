@@ -11,6 +11,10 @@ namespace api.Application.Transacoes.Commands
         public TipoTransacao Tipo { get; set; }
         public int CategoriaId { get; set; }
         public int PessoaId { get; set; }
+        public bool Fixo { get; set; }
+        public DateTime DataInicio { get; set; }
+        public DateTime? DataFim { get; set; }
+        public TipoRecorrencia? Recorrencia { get; set; }
 
     }
 }

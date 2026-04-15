@@ -27,7 +27,11 @@ namespace api.Application.Transacoes.Handlers
                     Valor = t.Valor,
                     Tipo = t.Tipo,
                     Categoria = new CategoriaDto() { Descricao = t.Categoria.Descricao, Id = t.Categoria.Id},
-                    Pessoa = new PessoaDto() { Nome = t.Pessoa.Nome, Id = t.Pessoa.Id }
+                    Pessoa = new PessoaDto() { Nome = t.Pessoa.Nome, Id = t.Pessoa.Id },
+                    Fixo = t.Fixo,
+                    Recorrencia = (Models.Enums.TipoRecorrencia)t.Recorrencia,
+                    DataInicio = t.DataInicio,
+                    DataFim = t.DataFim
                 }) .ToListAsync();
         }
     }
