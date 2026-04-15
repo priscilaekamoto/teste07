@@ -20,7 +20,6 @@ namespace api.Models
         public  DateTime DataInicio { get; set; }
         public  DateTime? DataFim { get; set; }
         public TipoRecorrencia? Recorrencia { get; set; }
-
         public ResultDto Valid(Pessoa pessoa, Categoria categoria) 
         {
             List<string> messages = new List<string>();

@@ -10,7 +10,10 @@ namespace api.Shared.Dtos
         public  TipoTransacao Tipo { get; set; }
         //public int CategoriaId { get; set; }
         public CategoriaDto Categoria { get; set; }
-        //public int PessoaId { get; set; }
         public PessoaDto Pessoa { get; set; }
+        public bool Fixo { get; set; }
+        public  TipoRecorrencia Recorrencia { get; set; }
+        public DateTime DataInicio { get; set; }
+        public DateTime? DataFim { get; set; }
     }
 }

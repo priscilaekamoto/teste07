@@ -32,7 +32,12 @@ namespace api.Application.Transacoes.Handlers
                     Valor = command.Valor,
                     Tipo = command.Tipo,
                     CategoriaId = command.CategoriaId,
-                    PessoaId = command.PessoaId
+                    PessoaId = command.PessoaId,
+                    Fixo = command.Fixo,
+                    Recorrencia = command.Recorrencia,
+                    DataInicio = command.DataInicio,
+                    DataFim = command.DataFim
+
                 };
 
                 var pessoa =  await _db.Pessoas.FindAsync(command.PessoaId);
@@ -55,6 +60,10 @@ namespace api.Application.Transacoes.Handlers
                         Pessoa = new PessoaDto() {Id = pessoa.Id, Nome = pessoa.Nome },
                         Tipo = command.Tipo,
                         Valor = command.Valor,
+                        Fixo = command.Fixo,
+                        Recorrencia = (Models.Enums.TipoRecorrencia)command.Recorrencia,
+                        DataInicio = command.DataInicio,
+                        DataFim = command.DataFim,
                         Messages = ret.Messages,
                         Code = ret.Code
                     };
@@ -70,7 +79,11 @@ namespace api.Application.Transacoes.Handlers
                     Valor = transacao.Valor, 
                     Tipo = transacao.Tipo, 
                     Categoria = new CategoriaDto() { Descricao = transacao.Categoria.Descricao, Id = transacao.Categoria.Id }, 
-                    Pessoa = new PessoaDto() { Nome = transacao.Pessoa.Nome, Id = transacao.Pessoa.Id } 
+                    Pessoa = new PessoaDto() { Nome = transacao.Pessoa.Nome, Id = transacao.Pessoa.Id },
+                    Fixo = transacao.Fixo,
+                    Recorrencia = (Models.Enums.TipoRecorrencia)transacao.Recorrencia,
+                    DataInicio = transacao.DataInicio,
+                    DataFim = transacao.DataFim
                 };
 
             } catch
