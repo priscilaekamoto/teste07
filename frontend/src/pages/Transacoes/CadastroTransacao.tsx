@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from '../../components/Layout';
 import { Flex, HStack, Heading, Box, Input } from "@chakra-ui/react";
+import { Checkbox as ChakraCheckbox } from "@chakra-ui/react";
 import { FiPlusCircle } from "react-icons/fi";
 import GenericButton from "../../components/buttons/GenericButton";
 import { createTransacao, getCategorias, getPessoas } from "../../data/services/api";
@@ -19,27 +20,33 @@ function CadastroTransacao() {
     const [selecionarCategoria, setSelecionarCategoria] = useState<number | string>('');
     const [pessoas, setPessoas] = useState<any[]>([]);
     const [selecionarPessoa, setSelecionarPessoa] = useState<number | string>('');
+    const [fixo, setFixo] = useState(false);
+    const [selecionarRecorrencia, setSelecionarRecorrencia] = useState<number | string>('');
+
 
     const [formData, setFormData] = useState({
         descricao: '',
         valor: '',
+        dataInicio: '',
+        dataFim: '',
 
     });
 
-    const fetchTiposEnum = () => {
-        const tipoEnum = {
-            Tipo: [
-                { value: 1, label: "Receita" },
-                { value: 2, label: "Despesa" },
-            ]
-        };
-        setEnums(tipoEnum);
-    };
-
     useEffect(() => {
-        fetchTiposEnum();
-    }, []);
-
+    setEnums({
+        Tipo: [
+            { value: 1, label: "Receita" },
+            { value: 2, label: "Despesa" },
+        ],
+        Recorrencia: [
+            { value: 1, label: "Diária" },
+            { value: 2, label: "Semanal" },
+            { value: 3, label: "Mensal" },
+            { value: 4, label: "Anual" },
+        ]
+    });
+}, []);
+   
     const fetchCategorias = async () => {
         try {
             const response = await getCategorias();
@@ -77,6 +84,8 @@ function CadastroTransacao() {
         setFormData({
             descricao: '',
             valor: '',
+            dataInicio: '',
+            dataFim: '',
         });
     }
 
@@ -94,11 +103,15 @@ function CadastroTransacao() {
             tipo: Number(selecionarTipo),
             categoriaId: selecionarCategoria ? Number(selecionarCategoria) : null,
             pessoaId: selecionarPessoa ? Number(selecionarPessoa) : null,
+            fixo: fixo,
+            recorrencia: selecionarRecorrencia ? Number(selecionarRecorrencia) : null,
+            dataInicio: formData.dataInicio || null,
+            dataFim: formData.dataFim || null,
         };
         try {
             const ret = await createTransacao(payload);
-            
-            if(ret.data.code !== 200) {
+
+            if (ret.data.code !== 200) {
                 ret.data.messages.forEach((msg: string) => {
                     toast.error(msg);
                 });
@@ -180,6 +193,58 @@ function CadastroTransacao() {
 
                         <ToastContainer position="top-right" />
                     </Flex>
+
+                    <Flex gap={8} mt={8} pl={20} align="start" h="100%">
+                        <Flex direction="column" w="400px" h="100%">
+                            <Box fontWeight="bold" mb={1}>Fixo</Box>
+
+                            <ChakraCheckbox.Root checked={fixo} onCheckedChange={(e) => setFixo(e.checked === true)} >
+                                <ChakraCheckbox.HiddenInput />
+                                <ChakraCheckbox.Control />
+                            </ChakraCheckbox.Root>
+                        </Flex>
+
+                        <Flex direction="column" w="200px" h="100%">
+                            <Box fontWeight="bold" mb={1}>Recorrência</Box>
+                            <CustomSelect
+                                name="selecionarRecorrencia"
+                                options={(enums as any)?.Recorrencia ?? []}
+                                value={selecionarRecorrencia}
+                                onChange={(e) => {
+                                    setSelecionarRecorrencia(e.target.value)
+                                }}
+                                w="200px"
+                            />
+                            {mostrarErros && !selecionarRecorrencia && (<Box color="red.500" w={300} fontSize="sm">Seleção de recorrência é obrigatória</Box>)}
+                        </Flex>
+
+                        <Flex direction="column" w="200px" h="100%">
+                            <Box fontWeight="bold" mb={1}>Data Inicial</Box>
+                            <Input
+                                type="date"
+                                name="dataInicio"
+                                value={formData.dataInicio}
+                                onChange={handleChange}
+                                h="40px"
+                                size="md"
+                            />
+
+                        </Flex>
+                        <Flex direction="column" w="200px" h="100%">
+                            <Box fontWeight="bold" mb={1}>Data Final</Box>
+                            <Input
+                                type="date"
+                                name="dataFim"
+                                value={formData.dataFim}
+                                onChange={handleChange}
+                                h="40px"
+                                size="md"
+                            />
+                        </Flex>
+
+
+                        <ToastContainer position="top-right" />
+                    </Flex>
                     <Flex gap={8} mt={8} pl={20} align="start" h="100%">
 
                         <Flex direction="column" w="200px" h="100%">
@@ -216,8 +281,6 @@ function CadastroTransacao() {
                             />
                             {mostrarErros && !selecionarPessoa && (<Box color="red.500" w={300} fontSize="sm">Seleção de pessoa é obrigatória</Box>)}
                         </Flex>
-
-
 
                         <Flex h="100%">
                             <GenericButton
