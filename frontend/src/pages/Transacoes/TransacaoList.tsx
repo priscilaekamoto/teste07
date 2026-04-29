@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import AddButton from "../../components/buttons/GenericButton";
 import { FiPlusCircle } from "react-icons/fi";
 import { TransacaoData } from "@/types";
-import { formatCurrency, formatDate } from "@/utils";
+import { formatCurrency } from "@/utils";
 
 
 const tipos = new Array();
