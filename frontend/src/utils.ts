@@ -28,4 +28,11 @@ export function formatCurrency (value: number)
     currency: "BRL",
   });
 }
+
+export function formatDate (dateString: string)
+{
+  const date = new Date(dateString);
+  return date.toLocaleDateString("pt-BR");
+}
+
     
