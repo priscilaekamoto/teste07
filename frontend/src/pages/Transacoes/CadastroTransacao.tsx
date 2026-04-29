@@ -195,7 +195,7 @@ function CadastroTransacao() {
                     </Flex>
 
                     <Flex gap={8} mt={8} pl={20} align="start" h="100%">
-                        <Flex direction="column" w="400px" h="100%">
+                        <Flex direction="column" w="160px" h="100%">
                             <Box fontWeight="bold" mb={1}>Fixo</Box>
 
                             <ChakraCheckbox.Root checked={fixo} onCheckedChange={(e) => setFixo(e.checked === true)} >

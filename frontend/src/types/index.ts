@@ -60,6 +60,13 @@ enum Tipo {
     Despesa = 2
 }
 
+enum Recorrencia {
+    Diaria = 1,
+    Semanal = 2,
+    Mensal = 3,
+    Anual = 4
+}                  
+
 export type TransacaoData = {
     id: number;
     descricao: string;
@@ -69,6 +76,10 @@ export type TransacaoData = {
     pessoaId: number;
     categoria?: Categoria;
     pessoa?: Pessoa;
+    fixo: boolean;
+    dataInicio: string;
+    dataFim: string;
+    recorrencia: Recorrencia;
 }
 
 export  type Option = { value: string | number; label: string };

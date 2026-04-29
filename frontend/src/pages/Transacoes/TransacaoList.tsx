@@ -14,11 +14,18 @@ import { useNavigate } from "react-router-dom";
 import AddButton from "../../components/buttons/GenericButton";
 import { FiPlusCircle } from "react-icons/fi";
 import { TransacaoData } from "@/types";
-import { formatCurrency } from "@/utils";
+import { formatCurrency, formatDate } from "@/utils";
+
 
 const tipos = new Array();
 tipos[1] = "Receita";
 tipos[2] = "Despesa";
+
+const recorrencias = new Array();
+recorrencias[1] = "Diária";
+recorrencias[2] = "Semanal";
+recorrencias[3] = "Mensal";
+recorrencias[4] = "Anual";
 
 const TransacaoList = () => {
     const navigate = useNavigate();
@@ -65,6 +72,9 @@ const TransacaoList = () => {
                                 <Table.ColumnHeader>Tipo</Table.ColumnHeader>
                                 <Table.ColumnHeader>Categoria</Table.ColumnHeader>
                                 <Table.ColumnHeader>Pessoa</Table.ColumnHeader>
+                                <Table.ColumnHeader>Fixo</Table.ColumnHeader>
+                                <Table.ColumnHeader>Recorrência</Table.ColumnHeader>
+                                
                             </Table.Row>
                         </Table.Header>
 
@@ -79,6 +89,9 @@ const TransacaoList = () => {
                                     <Table.Cell>{tipos[transacao?.tipo]}</Table.Cell>
                                     <Table.Cell>{transacao?.categoria?.descricao}</Table.Cell>
                                     <Table.Cell>{transacao?.pessoa?.nome}</Table.Cell>
+                                    <Table.Cell>{transacao?.fixo ? "Sim" : "Não"} </Table.Cell>
+                                    <Table.Cell>{recorrencias[transacao?.recorrencia]}</Table.Cell>
+                                    
                                 </Table.Row>
                             ))}
                         </Table.Body>
