@@ -83,6 +83,7 @@ const TransacaoList = () => {
                                 <Table.Row
                                     key={transacao?.id}
                                     _hover={{ bg: "gray.50", cursor: "pointer" }}
+                                    onClick={() => navigate(`/transacoes/${transacao.id}`)}
                                 >
                                     <Table.Cell fontWeight="bold">{transacao?.descricao}</Table.Cell>
                                     <Table.Cell>{formatCurrency(transacao?.valor)}</Table.Cell>
