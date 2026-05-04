@@ -23,6 +23,7 @@ export const getTotalReceitasDespesasSaldoPorCategoria = () => api.get("/Categor
 // Serviços de Transações
 export const getTransacoes = () => api.get("/Transacoes");
 export const createTransacao = (data: any) => { return api.post("/Transacoes", data); };
+export const getTransacaoById = (id: number) => api.get(`/Transacoes/${id}`);
 
 // interceptador para incluir token no futuro
 api.interceptors.request.use(
