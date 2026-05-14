@@ -15,6 +15,7 @@ namespace api.Application.Transacoes.Commands
         public DateTime DataInicio { get; set; }
         public DateTime? DataFim { get; set; }
         public TipoRecorrencia? Recorrencia { get; set; }
+        public string Observacao { get; set; } = null!;
 
     }
 }

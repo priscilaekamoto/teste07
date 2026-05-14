@@ -15,5 +15,6 @@ namespace api.Shared.Dtos
         public  TipoRecorrencia Recorrencia { get; set; }
         public DateTime DataInicio { get; set; }
         public DateTime? DataFim { get; set; }
+        public string Observacao { get; set; } = null!;
     }
 }

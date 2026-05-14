@@ -16,7 +16,6 @@ using api.Shared.Dtos;
 using api.Shared.Mediator.Dispatcher;
 using api.Shared.Mediator.Interfaces;
 using System.Reflection;
-using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IDispatcher, Dispatcher>();

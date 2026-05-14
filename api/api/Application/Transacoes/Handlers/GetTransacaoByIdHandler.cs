@@ -39,7 +39,8 @@ namespace api.Application.Transacoes.Handlers
                     Fixo = t.Fixo,
                     Recorrencia = (TipoRecorrencia)t.Recorrencia,
                     DataInicio = t.DataInicio,
-                    DataFim = t.DataFim
+                    DataFim = t.DataFim,
+                    Observacao = t.Observacao
                 })
                 .FirstOrDefaultAsync();
 
