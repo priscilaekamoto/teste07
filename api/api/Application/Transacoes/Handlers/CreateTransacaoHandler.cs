@@ -36,7 +36,8 @@ namespace api.Application.Transacoes.Handlers
                     Fixo = command.Fixo,
                     Recorrencia = command.Recorrencia,
                     DataInicio = command.DataInicio,
-                    DataFim = command.DataFim
+                    DataFim = command.DataFim,
+                    Observacao = command.Observacao
 
                 };
 
@@ -64,6 +65,7 @@ namespace api.Application.Transacoes.Handlers
                         Recorrencia = (Models.Enums.TipoRecorrencia)command.Recorrencia,
                         DataInicio = command.DataInicio,
                         DataFim = command.DataFim,
+                        Observacao = command.Observacao,
                         Messages = ret.Messages,
                         Code = ret.Code
                     };
@@ -83,7 +85,8 @@ namespace api.Application.Transacoes.Handlers
                     Fixo = transacao.Fixo,
                     Recorrencia = (Models.Enums.TipoRecorrencia)transacao.Recorrencia,
                     DataInicio = transacao.DataInicio,
-                    DataFim = transacao.DataFim
+                    DataFim = transacao.DataFim,
+                    Observacao = transacao.Observacao
                 };
 
             } catch
